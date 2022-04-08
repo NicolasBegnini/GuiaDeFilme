@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="https//thymeleaf.org">
+<head>
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+	
+<title>Lista de Usuarios</title>
+<style>
+.pagination {
+	text-align: center;
+}
+
+</style>
+</head>
+<body>
+
+	<header th:replace="fragments/padrao :: cabecalho"></header>
+	
+	<table>
+		<thead>
+			<tr>
+				<th>Id</th>
+				<th>Nome</th>
+				<th>Email</th>
+				<th>Alterar</th>
+				<th>Excluir</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="adm:${admins}">
+				<td th:text="${adm.id}" />
+				<td th:text="${adm.nome}" />
+				<td th:text="${adm.email}" />
+				<td><a th:href="@{/alterarAdm(id=${adm.id})}">Alterar</a></td>
+			<td><a
+				th:attr="onclick=|return confirm('Desaja excluir o administrador de ID: ${adm.id}')|"
+				th:href="@{/excluirAdm(id=${adm.id})}">Excluir</a></td>
+			</tr>
+		</tbody>
+	</table>
+
+	<ul class="pagination">
+		<li th:class="${pagAtual == 1 ? 'disabled' : 'waves-effect'}">
+		<a th:href="${pagAtual > 1 ? pagAtual -1 :'#'}"><i class="material-icons">Voltar</i></a></li>
+		
+			<li th:each="p:${numPaginas}">
+				<a th:href="${p}"><span th:text="${p}"></span></a>
+		
+		<li th:class="${pagAtual == totalPags ? 'disabled' : 'waves-effect'}" class="waves-effect">
+		<a th:href="${pagAtual < totalPags ? pagAtual + 1 : '#'}">
+		<i class="material-icons">Proxima</i></a></li>
+	</ul>
+	
+	<footer th:replace="fragments/padrao :: rodape"></footer>
+
+</body>
+</html>

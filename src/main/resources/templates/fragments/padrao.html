@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<link>
+</head>
+<body>
+ 
+		<nav th:fragment="cabecalho">
+			<div class="nav-wrapper">
+				<a href="#" class="brand-logo">Logo</a>
+				<ul id="nav-mobile" class="right hide-on-med-and-down">
+					<li><a href="listaAdm.html">Lista de Cadastro</a></li>
+				</ul>
+			</div>
+		</nav>
+
+	<footer class="page-footer" th:fragment="rodape">
+		<div class="container">
+			<div class="row">
+				<h3>Footer</h3>
+			</div>
+		</div>
+	</footer>
+
+
+</body>
+</html>

@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html xmlns:th="https//thymeleaf.org">
+<head>
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+<meta charset="utf-8">
+<title>Cadastrar Filme | GuiaFilme</title>
+
+<style>
+*{
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+header{
+	padding: 0 20px
+}
+
+.parent {
+	padding: 60px 50px
+}
+
+button {
+	margin-top: 20px
+}
+
+.inputFile{
+	margin-top:15px;
+}
+
+.checkEspaco{
+	margin-left: 15px;
+}
+.select{
+	margin-left: 4em; 
+}
+</style>
+
+</head>
+<body>
+
+	<header th:replace="fragments/padrao :: cabecalho"></header>
+
+
+	<div class="parent">
+	<div class="row">
+	
+    <form action="salvarfilme" method="post" class="col s12" enctype="multipart/form-data"> <!-- enctype é para receber o vetor de files -->
+    <input type="hidden" th:value="${filme?.id}" name="id">
+      <div class="row">
+        <div class="input-field col s6">
+          <input th:value="${filme?.nome}" id="nome" type="text" class="validate">
+          <label for="nome">Nome:</label>
+        </div>
+        <div class="input-field col s6">
+          <input th:value="${filme?.duracao}" id="duracao" type="text" class="validate">
+          <label for="duracao">Duração:</label>
+        </div>
+      </div>
+       <div class="row">
+        <div class="input-field col s12">
+          <textarea th:value="${filme?.descricao}" id="descricao" class="materialize-textarea"></textarea>
+          <label for="descricao">Descrição:</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s6">
+          <input th:value="${filme?.dataLancamento}" name="dataLancamento" id="dataLancamento" type="text" class="validate">
+          <label for="dataLancamento">Data de lançamento:</label>
+        </div>
+        <div class="divGenero input-field col s4">
+           <select class="select browser-default"  name="genero.id">
+      			<option disabled selected>Escolha o gênero</option>
+      			<option th:each="f: ${genero}" th:text="${f.genero}"
+						th:value="${f.id}"></option>
+   			</select>
+          <label for="genero.id">Gênero:</label>
+        </div>
+        <div class="divfaixaEt input-field col s6">
+          <input th:value="${filme?.faixaEtaria}" id="faixaEtaria" name="faixaEtaria" type="number" class="validate">
+          <label for="faixaEtaria">Faixa Etária:</label>
+        </div>
+      </div>
+      <div class="row">
+	      <div class="input-field col s6">
+	          <input th:value="${filme?.atores}" name="atores" id="atores" type="text" class="validate">
+	          <label for="atores">Atores:</label>
+	        </div>
+	        <div class="input-field col s6">
+	          <input th:value="${filme?.dubladores}" name="dubladores" id="dubladores" type="text" class="validate">
+	          <label for="dubladores">Dubladores:</label>
+	        </div>
+      	</div>
+      <div class="row">
+        <div class="col s12">
+	    	<p>
+	      		<label>
+	        		<input th:value="${filme?.dublado}" name="dublado" type="checkbox" class="filled-in" />
+	        		<span>Dublado</span>
+	      		</label>
+	      		
+	      		<label class="checkEspaco">
+	        		<input th:value="${filme?.legendado}" name="legendado" type="checkbox" class="filled-in" />
+	        		<span>Legendado</span>
+	      		</label>
+	    	</p>
+        </div>
+        <div class="row">
+	      <div class="input-field col s6">
+	          <input th:value="${filme?.idiomas}" name="idiomas" id="idiomas" type="text" class="validate">
+	          <label for="idiomas">Idiomas:</label>
+	        </div>
+      	</div>
+      	<div class="row">
+	      <div class="input-field col s6">
+	          <label for="capa">Capa:</label>
+	          <br>
+	          <input th:value="${filme?.capa}" name="filefotos" id="capa" type="file" class="inputFile" multiple accept="image/">
+	        </div>
+	        <div class="input-field col s6">
+	          <label for="trailer">Trailer:</label>
+	          <br>
+	          <input th:value="${filme?.trailer}" name="videoTrailer" id="trailer" type="file" class="inputFile" accept="videos/">
+	        </div>
+      	</div>
+      </div>
+ 	<button type="submit" class="btn btn-primary btn-block btn-large">Cadastrar</button>
+    </form>
+  </div>
+  </div>
+
+	<footer th:replace="fragments/padrao :: rodape"></footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+</body>
+</html>

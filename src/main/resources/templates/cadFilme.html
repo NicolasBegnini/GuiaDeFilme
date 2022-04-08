@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="https//thymeleaf.org">
+<head>
+
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+<meta charset="utf-8">
+<title>Cadastro Do Filme</title>
+
+<style>
+form {
+	padding: 50px 30px
+}
+</style>
+</head>
+<body>
+
+	<header th:replace="fragments/padrao :: cabecalho"></header>
+
+
+	<form action="cadastraTipoFilme" method="post">
+		<input type="hidden" th:value="${filmes?.id}" name="id"> 
+	
+		<label>Gênero:</label>
+		<input type="text" name="genero" th:value="${filmes?.genero}">
+		
+		<label>Descrição:</label>
+		<input type="text" name="descricao" th:value="${filmes?.descricao}"> 
+
+		<button class="btn waves-effect waves-light" type="submit" name="action">
+			Cadastrar <i class="material-icons right"></i>
+		</button>
+	</form>
+
+
+	<footer th:replace="fragments/padrao :: rodape"></footer>
+</body>
+</html>
